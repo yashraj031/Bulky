@@ -17,7 +17,7 @@ namespace BulkyBook.DataAccess.Repository
         public Repository(ApplicationDbContext db)
         {
             _db = db;
-            //_db.Products.Include(u => u.category).Include(u => u.CoverType);
+            /*_db.Products.Include(u => u.category).Include(u => u.CoverType)*/;
             this.dbSet=_db.Set<T>();
 
         }
@@ -32,14 +32,16 @@ namespace BulkyBook.DataAccess.Repository
             IQueryable<T> query = dbSet;
             if (includeProperties != null)
             {
-                foreach (var includeprop in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    query = query.Include(includeprop);
+                    query = query.Include(includeProp);
+                    
 
                 }
 
             }
             return query.ToList();
+
         }
 
         public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null)
@@ -48,17 +50,17 @@ namespace BulkyBook.DataAccess.Repository
 
             query = query.Where(filter);
 
-			if (includeProperties != null)
-			{
-				foreach (var includeprop in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-				{
-					query = query.Include(includeprop);
+            if (includeProperties != null)
+            {
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
 
-				}
+                }
 
-			}
+            }
 
-			return query.FirstOrDefault();
+            return query.FirstOrDefault();
         }
 
         public void Remove(T entity)
