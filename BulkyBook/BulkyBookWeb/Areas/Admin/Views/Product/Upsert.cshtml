@@ -3,11 +3,11 @@
 
 
 <form method="post" asp-action="Upsert" enctype="multipart/form-data">
-	@*<input asp-for="product.ID" hidden />*@
-	@*<input asp-for="product.ImageUrl" hidden />*@
+	<input asp-for="product.ID" hidden />
+	<input asp-for="product.ImageUrl" hidden />
 
 	<div class="row">
-		@*<div class="col-10" *@>
+		<div class="col-10" >
 			<div class="border p-3 mt-4 row">
 				<div class="row pb-2">
 					<h2 class="text-primary">@(Model.product.ID != 0 ? "Update" : "Create") Product</h2>
@@ -97,16 +97,16 @@
 						{
 							<button type="submit" onclick="return ValidateInput()" class="btn btn-primary" style="width:150px">Create</button>
 						}
-						<a asp-controller="CoverType" asp-action="Index" class="btn btn-secondary" style="width:150px">Back to List</a>
+						<a asp-controller="Product" asp-action="Index" class="btn btn-secondary" style="width:150px">Back to List</a>
 					</div>
 				</div>
 			</div>
 
-		@*</div>*@
-		@*<div class="col-2 pt-4">
+		</div>
+		<div class="col-2 pt-4">
 			<img src="@Model.product.ImageUrl"
 			width="100%" style="border-radius: 5px; border:1px solid #bbb9b9" />
-		</div>*@
+		</div>
 	</div>
 
 	
